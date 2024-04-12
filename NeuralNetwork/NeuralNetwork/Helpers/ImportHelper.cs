@@ -145,5 +145,36 @@ namespace NeuralNetwork.Helpers
 				return null;
 			}
 		}
-	}
+
+		
+
+        public static List<DataSet> Normalization(List<DataSet> dataSet)
+        {
+            for (int column = 0; column < dataSet[0].Values.Length; column++)
+            {
+                // Среднее значение сигнала нейрона.
+                var sum = 0.0;
+                for (int row = 0; row < dataSet.Count; row++)
+                {
+                    sum += dataSet[row].Values[column];
+                }
+                var average = sum / dataSet.Count;
+
+                // Стандартное квадратичное отклонение нейрона.
+                var error = 0.0;
+                for (int row = 0; row < dataSet.Count; row++)
+                {
+                    error += Math.Pow(dataSet[row].Values[column] - average, 2);
+                }
+                var standardError = Math.Sqrt(error / dataSet.Count);
+
+                for (int row = 0; row < dataSet.Count; row++)
+                {
+                    dataSet[row].Values[column] = (dataSet[row].Values[column] - average) / standardError;
+                }
+            }
+
+            return dataSet;
+        }
+    }
 }

@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
+using System.IO;
 using System.Linq;
 
 namespace NeuralNetwork.NetworkModels
@@ -12,6 +16,8 @@ namespace NeuralNetwork.NetworkModels
 		public List<Neuron> InputLayer { get; set; }
 		public List<List<Neuron>> HiddenLayers { get; set; }
 		public List<Neuron> OutputLayer { get; set; }
+		public List<ScallingData> ScallingDatas { get; set; }
+
 		#endregion
 
 		#region -- Globals --
@@ -26,6 +32,7 @@ namespace NeuralNetwork.NetworkModels
 			InputLayer = new List<Neuron>();
 			HiddenLayers = new List<List<Neuron>>();
 			OutputLayer = new List<Neuron>();
+			ScallingDatas = new List<ScallingData>(); 
 		}
 
 		public Network(int inputSize, int[] hiddenSizes, int outputSize, double? learnRate = null, double? momentum = null)
@@ -35,6 +42,7 @@ namespace NeuralNetwork.NetworkModels
 			InputLayer = new List<Neuron>();
 			HiddenLayers = new List<List<Neuron>>();
 			OutputLayer = new List<Neuron>();
+			ScallingDatas = new List<ScallingData>();
 
 			for (var i = 0; i < inputSize; i++)
 				InputLayer.Add(new Neuron());
@@ -61,7 +69,9 @@ namespace NeuralNetwork.NetworkModels
 		#region -- Training --
 		public void Train(List<DataSet> dataSets, int numEpochs)
 		{
-			for (var i = 0; i < numEpochs; i++)
+            dataSets = Scalling(dataSets);
+
+            for (var i = 0; i < numEpochs; i++)
 			{
 				foreach (var dataSet in dataSets)
 				{
@@ -69,14 +79,17 @@ namespace NeuralNetwork.NetworkModels
 					BackPropagate(dataSet.Targets);
 				}
 			}
-		}
+
+            ScallingDatas = GetScallingDatas(dataSets);
+        }
 
 		public void Train(List<DataSet> dataSets, double minimumError)
 		{
 			var error = 1.0;
 			var numEpochs = 0;
+			dataSets = Scalling(dataSets);
 
-			while (error > minimumError && numEpochs < int.MaxValue)
+            while (error > minimumError && numEpochs < int.MaxValue)
 			{
 				var errors = new List<double>();
 				foreach (var dataSet in dataSets)
@@ -88,6 +101,8 @@ namespace NeuralNetwork.NetworkModels
 				error = errors.Average();
 				numEpochs++;
 			}
+
+			ScallingDatas = GetScallingDatas(dataSets);
 		}
 
 		private void ForwardPropagate(params double[] inputs)
@@ -111,6 +126,7 @@ namespace NeuralNetwork.NetworkModels
 
 		public double[] Compute(params double[] inputs)
 		{
+			inputs = ScalleInput(inputs);
 			ForwardPropagate(inputs);
 			return OutputLayer.Select(a => a.Value).ToArray();
 		}
@@ -126,6 +142,77 @@ namespace NeuralNetwork.NetworkModels
 		public static double GetRandom()
 		{
 			return 2 * Random.NextDouble() - 1;
+		}
+
+
+        public static List<DataSet> Scalling(List<DataSet> dataSet)
+        {
+            for (int column = 0; column < dataSet[0].Values.Length; column++)
+            {
+                var min = dataSet[0].Values[column];
+                var max = dataSet[0].Values[column];
+                for (var row = 1; row < dataSet.Count; row++)
+                {
+                    var item = dataSet[row].Values[column];
+                    if (item < min)
+                    {
+                        min = item;
+                    }
+
+                    if (item > max)
+                    {
+                        max = item;
+                    }
+                }
+
+                var divider = max - min;
+                for (var row = 0; row < dataSet.Count; row++)
+                {
+                    dataSet[row].Values[column] = (dataSet[row].Values[column] - min) / divider;
+                }
+            }
+
+            return dataSet;
+        }
+
+        private List<ScallingData> GetScallingDatas(List<DataSet> dataSets)
+		{
+			var scallingDatas = new List<ScallingData>();
+			for (int column = 0; column < dataSets[0].Values.Length; column++)
+			{
+				var min = dataSets[0].Values[column];
+				var max = dataSets[0].Values[column];
+				for (var row = 1; row < dataSets.Count; row++)
+				{
+					var item = dataSets[row].Values[column];
+					if (item < min)
+					{
+						min = item;
+					}
+
+					if (item > max)
+					{
+						max = item;
+					}
+				}
+				scallingDatas.Add(new ScallingData(max,min));
+			}
+			return scallingDatas;
+        }
+
+		private double[] ScalleInput(double[] inputs)
+		{
+			for(var i=0; i< inputs.Length; i++)
+			{
+				if (inputs[i] > ScallingDatas[i].Max)
+                    ScallingDatas[i].Max = inputs[i];
+
+                if (inputs[i] < ScallingDatas[i].Min)
+                    ScallingDatas[i].Min = inputs[i];
+
+                inputs[i] = (inputs[i] - ScallingDatas[i].Min) / ScallingDatas[i].Max - ScallingDatas[i].Min;
+			}
+			return inputs;
 		}
 		#endregion
 	}

@@ -53,6 +53,7 @@
     <Compile Include="NetworkModels\Dataset.cs" />
     <Compile Include="NetworkModels\Network.cs" />
     <Compile Include="NetworkModels\Neuron.cs" />
+    <Compile Include="NetworkModels\ScallingData.cs" />
     <Compile Include="NetworkModels\Sigmoid.cs" />
     <Compile Include="NetworkModels\Synapse.cs" />
     <Compile Include="Program.cs" />
