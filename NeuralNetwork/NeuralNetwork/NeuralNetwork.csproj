@@ -39,6 +39,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,6 +51,7 @@
     <Compile Include="Helpers\ExportHelper.cs" />
     <Compile Include="Helpers\HelperNetwork.cs" />
     <Compile Include="Helpers\ImportHelper.cs" />
+    <Compile Include="Helpers\PictureConverter.cs" />
     <Compile Include="NetworkModels\Dataset.cs" />
     <Compile Include="NetworkModels\Network.cs" />
     <Compile Include="NetworkModels\Neuron.cs" />
