@@ -13,6 +13,70 @@ namespace NeuralNetworkTests
     public class NeuralNetworkTests
     {
         [TestMethod]
+        public void XORTest()
+        {
+            var dataSets = new List<DataSet>()
+            {
+                new DataSet(new double[] { 0, 0, }, new double[] { 0 }),
+                new DataSet(new double[] { 0, 1, }, new double[] { 1 }),
+                new DataSet(new double[] { 1, 0, }, new double[] { 1 }),
+                new DataSet(new double[] { 1, 1, }, new double[] { 0 }),
+            };
+
+            var neuralNetwork = new Network(2, new int[] { 3, 2 }, 1);
+            var minError = 0.01; // - 1% error
+
+            neuralNetwork.Train(dataSets, minError);
+
+            var results = new List<double[]>();
+            foreach(var dataSet in dataSets)
+            {
+                var outputs = neuralNetwork.Compute(dataSet.Values);
+                results.Add(outputs);
+            }
+           
+            for(var i=0; i< results.Count;i++)
+            {
+                Assert.AreEqual(dataSets[i].Targets.First(), Math.Round(results[i].First(), 1));
+            }
+        }
+
+        [TestMethod]
+        public void EvenOrOddTest()
+        {
+            // Output = true если
+            // В входных параметрах true - нечетно кол-во или false - четно
+            // Output = false если 
+            // В входных параметрах true - четно кол-во или false - нечетно
+            var dataSets = new List<DataSet>()
+            {
+                new DataSet(new double[] { 1, 0, 0 }, new double[] { 1 }),
+                new DataSet(new double[] { 0, 1, 1 }, new double[] { 0 }),
+                new DataSet(new double[] { 1, 0, 1 }, new double[] { 0 }),
+                new DataSet(new double[] { 1, 1, 1 }, new double[] { 1 }),
+
+            };
+
+            var neuralNetwork = new Network(3, new int[] { 3, 2 }, 1);
+            var minError = 0.01; // - 1% error
+
+            neuralNetwork.Train(dataSets, minError);
+
+            var results = new List<double[]>();
+            foreach (var dataSet in dataSets)
+            {
+                var outputs = neuralNetwork.Compute(dataSet.Values);
+                results.Add(outputs);
+            }
+
+            for (var i = 0; i < results.Count; i++)
+            {
+                Assert.AreEqual(dataSets[i].Targets.First(), Math.Round(results[i].First(), 1));
+            }
+        }
+
+
+        [TestMethod]
         public void HeartDataSetTest()
         {
             var text = File.ReadAllText("HeartDataset.txt");
@@ -20,8 +84,8 @@ namespace NeuralNetworkTests
             var input = dataSets[0];
             dataSets.Remove(input);
 
-            var neuralNetwork = new Network(13, new int[] { 6, 5, 4, 3, 2 }, 1);
-            var minError = 0.1;
+            var neuralNetwork = new Network(13, new int[] { 12, 10, 8, 6, 4 }, 1);
+            var minError = 0.03; // - 3% error
 
             neuralNetwork.Train(dataSets, minError);
             var outputs = neuralNetwork.Compute(input.Values);
