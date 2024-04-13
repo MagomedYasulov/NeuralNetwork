@@ -30,7 +30,6 @@ namespace NeuralNetwork
 		private static void Greet()
 		{
 			Console.WriteLine("C# Neural Network Manager");
-			Console.WriteLine("Created by Trent Sartain (trentsartain on GitHub)");
 			PrintUnderline(50);
 			PrintNewLine();
 		}
