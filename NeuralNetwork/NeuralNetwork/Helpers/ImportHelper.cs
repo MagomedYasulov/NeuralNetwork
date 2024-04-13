@@ -146,7 +146,21 @@ namespace NeuralNetwork.Helpers
 			}
 		}
 
-		
+		public static List<DataSet> ImportImageDataset(string path, int count, params double[] targets)
+		{
+            var dataSets = new List<DataSet>(); //[size, testImageInput.Length];
+            var converter = new PictureConverter();
+            var images = Directory.GetFiles(path);
+			
+            for (int i = 0; i < count; i++)
+            {
+                var image = converter.Convert(images[i]);
+                var dataset = new DataSet(image, targets);
+				dataSets.Add(dataset);
+            }
+
+            return dataSets;
+        }
 
         public static List<DataSet> Normalization(List<DataSet> dataSet)
         {

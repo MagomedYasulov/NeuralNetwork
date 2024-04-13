@@ -10,17 +10,17 @@ namespace NeuralNetwork.Helpers
     public class PictureConverter
     {
         public int Boundary { get; set; } = 128;
-        public int Height { get; set; }
-        public int Width { get; set; }
+        public int Height { get; set; } = 20;
+        public int Width { get; set; } = 20;
 
         public double[] Convert(string path)
         {
             var result = new List<double>();
 
             var image = new Bitmap(path);
-            var resizeImage = new Bitmap(image, new Size(20, 20));
-            Height = resizeImage.Height;
-            Width = resizeImage.Width;
+            var resizeImage = new Bitmap(image, new Size(Width, Height)); 
+            //Height = resizeImage.Height;
+            //Width = resizeImage.Width;
 
             for (int y = 0; y < resizeImage.Height; y++)
             {
@@ -37,6 +37,8 @@ namespace NeuralNetwork.Helpers
 
         private int Brightness(Color pixel)
         {
+            //if (pixel.GetBrightness() < 0.02)
+            //    return 1;
             var result = 0.299 * pixel.R + 0.587 * pixel.G + 0.114 * pixel.B;
             return result < Boundary ? 0 : 1;
         }

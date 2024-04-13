@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -91,6 +92,7 @@ namespace NeuralNetwork.NetworkModels
 
             while (error > minimumError && numEpochs < int.MaxValue)
 			{
+				Debug.WriteLine($"epoch:{numEpochs} | error:{error} | {DateTime.Now.ToLongTimeString()}");
 				var errors = new List<double>();
 				foreach (var dataSet in dataSets)
 				{
@@ -165,7 +167,7 @@ namespace NeuralNetwork.NetworkModels
                     }
                 }
 
-                var divider = max - min;
+                var divider = max - min == 0 ? 1 : max -min;
                 for (var row = 0; row < dataSet.Count; row++)
                 {
                     dataSet[row].Values[column] = (dataSet[row].Values[column] - min) / divider;

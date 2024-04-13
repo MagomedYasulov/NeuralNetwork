@@ -52,6 +52,7 @@
     <Compile Include="Helpers\HelperNetwork.cs" />
     <Compile Include="Helpers\ImportHelper.cs" />
     <Compile Include="Helpers\PictureConverter.cs" />
+    <Compile Include="Helpers\RandomExtentions.cs" />
     <Compile Include="NetworkModels\Dataset.cs" />
     <Compile Include="NetworkModels\Network.cs" />
     <Compile Include="NetworkModels\Neuron.cs" />
