@@ -150,6 +150,19 @@ namespace NeuralNetwork.Helpers
 				}
 			}
 
+			//ScallingDatas 
+			foreach (var sd in network.ScallingDatas)
+			{
+				var scallingData = new HelperScallingData()
+				{
+					Id = sd.Id,
+					Max = sd.Max,
+					Min = sd.Min,
+				};
+
+                hn.ScallingDatas.Add(scallingData);
+            }
+
 			return hn;
 		}
 	}

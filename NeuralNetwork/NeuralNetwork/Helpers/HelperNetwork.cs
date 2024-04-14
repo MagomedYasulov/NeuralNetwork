@@ -11,13 +11,16 @@ namespace NeuralNetwork.Helpers
 		public List<List<HelperNeuron>> HiddenLayers { get; set; }
 		public List<HelperNeuron> OutputLayer { get; set; }
 		public List<HelperSynapse> Synapses { get; set; }
+		public List<HelperScallingData> ScallingDatas {  get; set; }
 
-		public HelperNetwork()
+
+        public HelperNetwork()
 		{
 			InputLayer = new List<HelperNeuron>();
 			HiddenLayers = new List<List<HelperNeuron>>();
 			OutputLayer = new List<HelperNeuron>();
 			Synapses = new List<HelperSynapse>();
+			ScallingDatas = new List<HelperScallingData>();
 		}
 	}
 
@@ -38,4 +41,11 @@ namespace NeuralNetwork.Helpers
 		public double Weight { get; set; }
 		public double WeightDelta { get; set; }
 	}
+
+    public class HelperScallingData
+    {
+        public Guid Id { get; set; }
+        public double Max { get; set; }
+        public double Min { get; set; }
+    }
 }
