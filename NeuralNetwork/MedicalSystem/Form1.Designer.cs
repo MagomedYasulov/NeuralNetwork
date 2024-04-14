@@ -32,6 +32,8 @@
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EnterData = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Healthy = new System.Windows.Forms.Label();
+            this.Sick = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,11 +69,37 @@
             this.выходToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.выходToolStripMenuItem.Text = "Выход";
             // 
+            // Healthy
+            // 
+            this.Healthy.AutoSize = true;
+            this.Healthy.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Healthy.Location = new System.Drawing.Point(325, 185);
+            this.Healthy.Name = "Healthy";
+            this.Healthy.Size = new System.Drawing.Size(129, 31);
+            this.Healthy.TabIndex = 1;
+            this.Healthy.Text = "Здоров - ";
+            this.Healthy.Visible = false;
+            this.Healthy.Click += new System.EventHandler(this.healthy_Click);
+            // 
+            // Sick
+            // 
+            this.Sick.AutoSize = true;
+            this.Sick.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Sick.Location = new System.Drawing.Point(325, 233);
+            this.Sick.Name = "Sick";
+            this.Sick.Size = new System.Drawing.Size(115, 31);
+            this.Sick.TabIndex = 2;
+            this.Sick.Text = "Болен - ";
+            this.Sick.Visible = false;
+            this.Sick.Click += new System.EventHandler(this.Sick_Click);
+            // 
             // MedicalSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Sick);
+            this.Controls.Add(this.Healthy);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MedicalSystem";
@@ -89,6 +117,8 @@
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem EnterData;
         private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
+        private System.Windows.Forms.Label Healthy;
+        private System.Windows.Forms.Label Sick;
     }
 }
 

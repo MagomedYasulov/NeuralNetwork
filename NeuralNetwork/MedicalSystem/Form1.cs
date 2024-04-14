@@ -21,6 +21,30 @@ namespace MedicalSystem
         {
             var enterdataForm = new EnterData();
             var result = enterdataForm.ShowForm();
+
+            if (result == null)
+                return;
+
+            var output = Math.Round(result.First(),2);
+
+            Healthy.Visible = true;
+            Sick.Visible = true;
+
+            double healtyPercent = output * 100;
+            double sickPercent = (1 - output) * 100;
+
+            Healthy.Text = $"Здоров - {healtyPercent}%";
+            Sick.Text = $"Болен - {sickPercent}%";
+        }
+
+        private void healthy_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Sick_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

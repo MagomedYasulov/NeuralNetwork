@@ -75,6 +75,21 @@ namespace NeuralNetworkTests
             }
         }
 
+        [TestMethod]
+        public void ExportNetworkTest()
+        {
+            var text = File.ReadAllText("HeartDataset.txt");
+            var dataSets = JsonConvert.DeserializeObject<List<DataSet>>(text);
+
+            var network = ImportHelper.ImportNetwork("D:\\с# work\\Практика\\NeuralNetwork\\NeuralNetwork\\NeuralNetworkTests\\bin\\Debug\\WellTrainedNetwork.txt");
+
+            var errors = new double[dataSets.Count];
+            for (var i = 0; i < dataSets.Count; i++)
+            {
+                var outputs = network.Compute(dataSets[i].Values);
+                errors[i] = Math.Abs(dataSets[i].Targets.First() - Math.Round(outputs.First(), 2));
+            }
+        }
 
         [TestMethod]
         public void HeartDataSetTest()
@@ -84,14 +99,13 @@ namespace NeuralNetworkTests
             var input = dataSets[0];
             dataSets.Remove(input);
 
-            var neuralNetwork = new Network(13, new int[] { 12, 10, 8, 6, 4 }, 1);
-            var minError = 0.03; // - 3% error
+            var neuralNetwork = new Network(13, new int[] { 7, 4 }, 1); //24, 12, 8, 6, 4 || 60, 30, 20, 15, 10, 8 , 4
+            var minError = 0.01; // - 3% error
 
             neuralNetwork.Train(dataSets, minError);
             var outputs = neuralNetwork.Compute(input.Values);
 
-
-            Assert.AreEqual(input.Targets.First(), Math.Round(outputs.First(), 1));           
+            Assert.AreEqual(input.Targets.First(), Math.Round(outputs.First(), 1));
         }
 
         [TestMethod]

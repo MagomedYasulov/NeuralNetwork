@@ -128,8 +128,8 @@ namespace NeuralNetwork.NetworkModels
 
 		public double[] Compute(params double[] inputs)
 		{
-			inputs = ScalleInput(inputs);
-			ForwardPropagate(inputs);
+			var result = ScalleInput(inputs);
+			ForwardPropagate(result);
 			return OutputLayer.Select(a => a.Value).ToArray();
 		}
 
@@ -204,6 +204,7 @@ namespace NeuralNetwork.NetworkModels
 
 		private double[] ScalleInput(double[] inputs)
 		{
+			var result = new double[inputs.Length];
 			for(var i=0; i< inputs.Length; i++)
 			{
 				if (inputs[i] > ScallingDatas[i].Max)
@@ -212,9 +213,9 @@ namespace NeuralNetwork.NetworkModels
                 if (inputs[i] < ScallingDatas[i].Min)
                     ScallingDatas[i].Min = inputs[i];
 
-                inputs[i] = (inputs[i] - ScallingDatas[i].Min) / ScallingDatas[i].Max - ScallingDatas[i].Min;
-			}
-			return inputs;
+                result[i] = (inputs[i] - ScallingDatas[i].Min) / ScallingDatas[i].Max - ScallingDatas[i].Min;
+            }
+			return result;
 		}
 		#endregion
 	}
