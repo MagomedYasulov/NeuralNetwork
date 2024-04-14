@@ -90,7 +90,6 @@ namespace NeuralNetworkTests
             neuralNetwork.Train(dataSets, minError);
             var outputs = neuralNetwork.Compute(input.Values);
 
-            //ExportHelper.ExportNetwork(neuralNetwork);
 
             Assert.AreEqual(input.Targets.First(), Math.Round(outputs.First(), 1));           
         }
