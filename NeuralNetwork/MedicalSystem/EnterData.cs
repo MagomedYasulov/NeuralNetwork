@@ -36,17 +36,6 @@ namespace MedicalSystem
             var form = new EnterData();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                //var patient = new Patient();
-
-                //foreach (var textBox in form.Inputs)
-                //{
-                //    patient.GetType().InvokeMember(textBox.Tag.ToString(),
-                //        BindingFlags.Instance | BindingFlags.Public | BindingFlags.SetProperty,
-                //        Type.DefaultBinder, patient, new object[] { textBox.Text });
-                //}
-
-                //var type = patient.GetType();
-                //var properties = type.GetProperties();
                 var inputs = new double[form.Inputs.Count];
 
                 for (var i = 0; i < form.Inputs.Count; i++)

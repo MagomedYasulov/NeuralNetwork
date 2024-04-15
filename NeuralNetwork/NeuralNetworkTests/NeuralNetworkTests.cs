@@ -84,8 +84,8 @@ namespace NeuralNetworkTests
             var input = dataSets[0];
             dataSets.Remove(input);
 
-            var neuralNetwork = new Network(13, new int[] { 7, 4 }, 1); //24, 12, 8, 6, 4 || 60, 30, 20, 15, 10, 8 , 4
-            var minError = 0.01; // - 3% error
+            var neuralNetwork = new Network(13, new int[] { 7, 4 }, 1); 
+            var minError = 0.01; // - 1% error
 
             neuralNetwork.Train(dataSets, minError);
             var outputs = neuralNetwork.Compute(input.Values);
@@ -104,12 +104,15 @@ namespace NeuralNetworkTests
             var parasitizedImageInput = converter.Convert("Images\\Parasitized.png");
             var unparasitizedImageInput = converter.Convert("Images\\Unparasitized.png");
 
-            var hiddenLayersCount = 50;//parasitizedImageInput.Length / 4;
-            var hiddenLayers = new int[hiddenLayersCount - 1];
-            
-            for (int i=0; i< hiddenLayersCount - 1; i++)
+            var hiddenLayersCount = parasitizedImageInput.Length / 2;
+            var hiddenLayers = new int[7];
+
+            var i = 0;
+            while(i < hiddenLayers.Length)
             {
-                hiddenLayers[i] = hiddenLayersCount - i;
+                hiddenLayers[i] = hiddenLayersCount;
+                hiddenLayersCount /= 2;
+                i++;
             }
 
             var neuralNetwork = new Network(parasitizedImageInput.Length, hiddenLayers, 1);
