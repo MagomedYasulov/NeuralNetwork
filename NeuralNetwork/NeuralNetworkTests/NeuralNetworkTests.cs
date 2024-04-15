@@ -28,16 +28,9 @@ namespace NeuralNetworkTests
 
             neuralNetwork.Train(dataSets, minError);
 
-            var results = new List<double[]>();
             foreach(var dataSet in dataSets)
             {
-                var outputs = neuralNetwork.Compute(dataSet.Values);
-                results.Add(outputs);
-            }
-           
-            for(var i=0; i< results.Count;i++)
-            {
-                Assert.AreEqual(dataSets[i].Targets.First(), Math.Round(results[i].First(), 1));
+                Assert.AreEqual(dataSet.Targets.First(), Math.Round(neuralNetwork.Compute(dataSet.Values).First(), 1));
             }
         }
 
@@ -54,7 +47,6 @@ namespace NeuralNetworkTests
                 new DataSet(new double[] { 0, 1, 1 }, new double[] { 0 }),
                 new DataSet(new double[] { 1, 0, 1 }, new double[] { 0 }),
                 new DataSet(new double[] { 1, 1, 1 }, new double[] { 1 }),
-
             };
 
             var neuralNetwork = new Network(3, new int[] { 3, 2 }, 1);
@@ -62,16 +54,9 @@ namespace NeuralNetworkTests
 
             neuralNetwork.Train(dataSets, minError);
 
-            var results = new List<double[]>();
             foreach (var dataSet in dataSets)
             {
-                var outputs = neuralNetwork.Compute(dataSet.Values);
-                results.Add(outputs);
-            }
-
-            for (var i = 0; i < results.Count; i++)
-            {
-                Assert.AreEqual(dataSets[i].Targets.First(), Math.Round(results[i].First(), 1));
+                Assert.AreEqual(dataSet.Targets.First(), Math.Round(neuralNetwork.Compute(dataSet.Values).First(), 1));
             }
         }
 
