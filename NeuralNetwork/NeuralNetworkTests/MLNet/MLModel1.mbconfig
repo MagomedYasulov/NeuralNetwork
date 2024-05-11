@@ -1,0 +1,545 @@
+﻿{
+  "Scenario": "Classification",
+  "DataSource": {
+    "Version": 3,
+    "EscapeCharacter": "\"",
+    "ReadMultiLines": false,
+    "KeepDiacritics": false,
+    "KeepPunctuations": false,
+    "AllowQuoting": false,
+    "Type": "TabularFile",
+    "FilePath": "C:\\Users\\user\\source\\repos\\neuralnetworks\\NeuralNetworksTests\\randomheart.csv",
+    "Delimiter": ",",
+    "DecimalMarker": ".",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "age",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "sex",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "cp",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "trestbps",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "chol",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "fbs",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "restecg",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "thalach",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "exang",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "oldpeak",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "slope",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "ca",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "thal",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      },
+      {
+        "ColumnName": "target",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 5
+      }
+    ]
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 3,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.81691940519315853,
+        "RuntimeInSeconds": 0.096,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e7 * e10",
+          "e0": {
+            "OutputColumnNames": [
+              "age",
+              "sex",
+              "cp",
+              "trestbps",
+              "chol",
+              "fbs",
+              "restecg",
+              "thalach",
+              "exang",
+              "oldpeak",
+              "slope",
+              "ca",
+              "thal"
+            ],
+            "InputColumnNames": [
+              "age",
+              "sex",
+              "cp",
+              "trestbps",
+              "chol",
+              "fbs",
+              "restecg",
+              "thalach",
+              "exang",
+              "oldpeak",
+              "slope",
+              "ca",
+              "thal"
+            ]
+          },
+          "e1": {
+            "InputColumnNames": [
+              "age",
+              "sex",
+              "cp",
+              "trestbps",
+              "chol",
+              "fbs",
+              "restecg",
+              "thalach",
+              "exang",
+              "oldpeak",
+              "slope",
+              "ca",
+              "thal"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e10": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "OutputColumnName": "target",
+            "InputColumnName": "target",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e7": {
+            "L1Regularization": 6.6180563,
+            "L2Regularization": 1.20395911,
+            "LabelColumnName": "target",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.81373438796133346,
+        "RuntimeInSeconds": 0.095,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e7 * e10",
+          "e0": {
+            "OutputColumnNames": [
+              "age",
+              "sex",
+              "cp",
+              "trestbps",
+              "chol",
+              "fbs",
+              "restecg",
+              "thalach",
+              "exang",
+              "oldpeak",
+              "slope",
+              "ca",
+              "thal"
+            ],
+            "InputColumnNames": [
+              "age",
+              "sex",
+              "cp",
+              "trestbps",
+              "chol",
+              "fbs",
+              "restecg",
+              "thalach",
+              "exang",
+              "oldpeak",
+              "slope",
+              "ca",
+              "thal"
+            ]
+          },
+          "e1": {
+            "InputColumnNames": [
+              "age",
+              "sex",
+              "cp",
+              "trestbps",
+              "chol",
+              "fbs",
+              "restecg",
+              "thalach",
+              "exang",
+              "oldpeak",
+              "slope",
+              "ca",
+              "thal"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e10": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "OutputColumnName": "target",
+            "InputColumnName": "target",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e7": {
+            "L1Regularization": 1.20137453,
+            "L2Regularization": 3.95152068,
+            "LabelColumnName": "target",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.81267618690313237,
+        "RuntimeInSeconds": 0.292,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e7 * e10",
+          "e0": {
+            "OutputColumnNames": [
+              "age",
+              "sex",
+              "cp",
+              "trestbps",
+              "chol",
+              "fbs",
+              "restecg",
+              "thalach",
+              "exang",
+              "oldpeak",
+              "slope",
+              "ca",
+              "thal"
+            ],
+            "InputColumnNames": [
+              "age",
+              "sex",
+              "cp",
+              "trestbps",
+              "chol",
+              "fbs",
+              "restecg",
+              "thalach",
+              "exang",
+              "oldpeak",
+              "slope",
+              "ca",
+              "thal"
+            ]
+          },
+          "e1": {
+            "InputColumnNames": [
+              "age",
+              "sex",
+              "cp",
+              "trestbps",
+              "chol",
+              "fbs",
+              "restecg",
+              "thalach",
+              "exang",
+              "oldpeak",
+              "slope",
+              "ca",
+              "thal"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e10": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "OutputColumnName": "target",
+            "InputColumnName": "target",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e7": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "target",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "LbfgsMaximumEntropyMulti",
+        "Score": 0.81248518617333865,
+        "RuntimeInSeconds": 0.081,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e7 * e10",
+          "e0": {
+            "OutputColumnNames": [
+              "age",
+              "sex",
+              "cp",
+              "trestbps",
+              "chol",
+              "fbs",
+              "restecg",
+              "thalach",
+              "exang",
+              "oldpeak",
+              "slope",
+              "ca",
+              "thal"
+            ],
+            "InputColumnNames": [
+              "age",
+              "sex",
+              "cp",
+              "trestbps",
+              "chol",
+              "fbs",
+              "restecg",
+              "thalach",
+              "exang",
+              "oldpeak",
+              "slope",
+              "ca",
+              "thal"
+            ]
+          },
+          "e1": {
+            "InputColumnNames": [
+              "age",
+              "sex",
+              "cp",
+              "trestbps",
+              "chol",
+              "fbs",
+              "restecg",
+              "thalach",
+              "exang",
+              "oldpeak",
+              "slope",
+              "ca",
+              "thal"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e10": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "OutputColumnName": "target",
+            "InputColumnName": "target",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e7": {
+            "L1Regularization": 2.739137,
+            "L2Regularization": 23.9850922,
+            "LabelColumnName": "target",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "LbfgsLogisticRegressionOva",
+        "Score": 0.80897248319942872,
+        "RuntimeInSeconds": 0.187,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2 * e6 * e10",
+          "e0": {
+            "OutputColumnNames": [
+              "age",
+              "sex",
+              "cp",
+              "trestbps",
+              "chol",
+              "fbs",
+              "restecg",
+              "thalach",
+              "exang",
+              "oldpeak",
+              "slope",
+              "ca",
+              "thal"
+            ],
+            "InputColumnNames": [
+              "age",
+              "sex",
+              "cp",
+              "trestbps",
+              "chol",
+              "fbs",
+              "restecg",
+              "thalach",
+              "exang",
+              "oldpeak",
+              "slope",
+              "ca",
+              "thal"
+            ]
+          },
+          "e1": {
+            "InputColumnNames": [
+              "age",
+              "sex",
+              "cp",
+              "trestbps",
+              "chol",
+              "fbs",
+              "restecg",
+              "thalach",
+              "exang",
+              "oldpeak",
+              "slope",
+              "ca",
+              "thal"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e10": {
+            "OutputColumnName": "PredictedLabel",
+            "InputColumnName": "PredictedLabel"
+          },
+          "e2": {
+            "OutputColumnName": "target",
+            "InputColumnName": "target",
+            "AddKeyValueAnnotationsAsText": false
+          },
+          "e6": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "target",
+            "FeatureColumnName": "Features"
+          }
+        }
+      }
+    ],
+    "Estimators": {
+      "e0": "ReplaceMissingValues",
+      "e1": "Concatenate",
+      "e2": "MapValueToKey",
+      "e3": "FastTreeOva",
+      "e4": "FastForestOva",
+      "e5": "LightGbmMulti",
+      "e6": "LbfgsLogisticRegressionOva",
+      "e7": "LbfgsMaximumEntropyMulti",
+      "e8": "SdcaMaximumEntropyMulti",
+      "e9": "SdcaLogisticRegressionOva",
+      "e10": "MapKeyToValue"
+    },
+    "Schema": "e0 * e1 * e2 * (e3 + e4 + e5 + e6 + e7 + e8 + e9) * e10",
+    "MetricName": "MacroAccuracy",
+    "ModelFilePath": "D:\\с# work\\Черновик\\ML.NETExample\\ML.NETExample\\MLModel1.mlnet"
+  },
+  "Type": "TrainingConfig",
+  "Version": 5,
+  "TrainingOption": {
+    "Version": 2,
+    "Subsampling": false,
+    "Type": "ClassificationTrainingOption",
+    "TrainingTime": 90,
+    "LabelColumn": "target",
+    "ValidationOption": {
+      "Version": 0,
+      "Type": "CrossValidationValidationOption",
+      "NumberOfFolds": 5
+    }
+  }
+}
